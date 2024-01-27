@@ -1,4 +1,9 @@
-# Task 13: Introduction to Amazon CloudFront
-## <center>Architecture Diagram</center>
+# Task 13: Introduction to Amazon CloudFront and Securely access S3 images with Geo Restriction
 
-![no_image](image.png)
+## Working process of CloudFront:
+![no_image](images/image1.png)
+
+---
+
+## Implemented architecture diagram:
+![Alt text](images/image2.png)

@@ -1,11 +1,22 @@
+### Specific naming for destribution ###
 locals {
   s3_origin_id = "myS3Origin"
 }
 
+### Create OAC for S3 origin ###
+resource "aws_cloudfront_origin_access_control" "oac" {
+  name                              = "my-oac"
+  origin_access_control_origin_type = "s3"
+  signing_behavior                  = "always"
+  signing_protocol                  = "sigv4"
+}
+
+### Destribution creating ###
 resource "aws_cloudfront_distribution" "s3_distribution" {
   origin {
-    domain_name = aws_s3_bucket.bucket.bucket_regional_domain_name
-    origin_id   = local.s3_origin_id
+    domain_name              = aws_s3_bucket.bucket.bucket_regional_domain_name
+    origin_access_control_id = aws_cloudfront_origin_access_control.oac.id
+    origin_id                = local.s3_origin_id
   }
   enabled             = true
   is_ipv6_enabled     = true
@@ -42,10 +53,11 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
   }
 
   price_class = "PriceClass_200"
+
   restrictions {
     geo_restriction {
       restriction_type = "blacklist"
-      locations        = ["PL", "BY"]
+      locations        = var.country
     }
   }
   viewer_certificate {

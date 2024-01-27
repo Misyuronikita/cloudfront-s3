@@ -11,3 +11,8 @@ variable "secret_key" {
 variable "region" {
   type = string
 }
+
+variable "country" {
+  type    = list(string)
+  default = ["PL", "BY"]
+}
