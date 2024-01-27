@@ -1,4 +1,4 @@
-# Task 13: Automate EBS Snapshot create with CloudWatch Event and get SNS notification Using Terraform
+# Task 13: Introduction to Amazon CloudFront
 ## <center>Architecture Diagram</center>
 
 ![no_image](image.png)
